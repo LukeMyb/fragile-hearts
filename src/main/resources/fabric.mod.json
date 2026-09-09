@@ -1,15 +1,13 @@
 {
 	"schemaVersion": 1,
-	"id": "fragile_hearts",
+	"id": "fragile-hearts",
 	"version": "${version}",
 	"name": "Fragile Hearts",
 	"description": "Reduces max HP on every sunrise. Break spawners to survive.",
 	"authors": [
-		"Me!"
+		"Author"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/fragile-hearts/icon.png",
