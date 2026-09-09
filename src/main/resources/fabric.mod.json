@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "modid",
+	"id": "fragile_hearts",
 	"version": "${version}",
-	"name": "Example Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Fragile Hearts",
+	"description": "Reduces max HP on every sunrise. Break spawners to survive.",
 	"authors": [
 		"Me!"
 	],
@@ -12,15 +12,15 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "CC0-1.0",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/fragile-hearts/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.example.ExampleMod"
+			"com.example.fragile_hearts.FragileHearts"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json"
+		"fragile-hearts.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.19.3",
