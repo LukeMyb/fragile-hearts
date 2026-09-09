@@ -5,9 +5,10 @@
 	"name": "Fragile Hearts",
 	"description": "Reduces max HP on every sunrise. Break spawners to survive.",
 	"authors": [
-		"Author"
+		"Luke"
 	],
 	"contact": {
+		"sources": "https://github.com/LukeMyb"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/fragile-hearts/icon.png",
