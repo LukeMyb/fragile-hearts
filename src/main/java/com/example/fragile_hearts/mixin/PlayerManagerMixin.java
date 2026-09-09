@@ -31,7 +31,7 @@ public class PlayerManagerMixin {
                 player.setHealth(6.0F);
             }
             fhPlayer.setHpInitialized(true);
-            player.sendMessage(new LiteralText("§d[Fragile Hearts] 脆い命のサバイバルが始まりました。"), false);
+            player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.survival_begun").formatted(net.minecraft.util.Formatting.LIGHT_PURPLE), false);
         }
     }
 }

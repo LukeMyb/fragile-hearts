@@ -47,7 +47,7 @@ public class FragileHearts implements ModInitializer {
                         if (hiddenHp > 0) {
                             // 猶予ストックがある場合は消費のみ
                             fhPlayer.removeHiddenHp(1);
-                            player.sendMessage(new LiteralText("§e朝が来ました。隠れHPを1消費しました。残り: " + fhPlayer.getHiddenHp()), false);
+                            player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.morning_consumed", fhPlayer.getHiddenHp()).formatted(net.minecraft.util.Formatting.YELLOW), false);
                         } else {
                             // ストックがない場合、最大HPを1（ハート半分）減少。下限は1
                             EntityAttributeInstance maxHealthAttr = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
@@ -59,7 +59,7 @@ public class FragileHearts implements ModInitializer {
                                     if (player.getHealth() > player.getMaxHealth()) {
                                         player.setHealth(player.getMaxHealth());
                                     }
-                                    player.sendMessage(new LiteralText("§c朝が来ました。最大HPが減少しました。"), false);
+                                    player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.morning_decreased").formatted(net.minecraft.util.Formatting.RED), false);
                                 }
                             }
                         }
@@ -78,15 +78,15 @@ public class FragileHearts implements ModInitializer {
                     if (currentMaxHealth < 6.0D) {
                         // 最大HPが6（ハート3つ）未満なら回復
                         maxHealthAttr.setBaseValue(Math.min(6.0D, currentMaxHealth + 1.0D));
-                        player.sendMessage(new LiteralText("§aスポナーを破壊！最大HPが回復しました。"), false);
+                        player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.spawner_restored").formatted(net.minecraft.util.Formatting.GREEN), false);
                     } else {
                         // 最大HPが満タンなら隠れHPストックを増やす
                         FragileHeartsPlayer fhPlayer = (FragileHeartsPlayer) player;
                         if (fhPlayer.getHiddenHp() < 4) {
                             fhPlayer.addHiddenHp(1);
-                            player.sendMessage(new LiteralText("§bスポナーを破壊！隠れHPストックを獲得しました。残り: " + fhPlayer.getHiddenHp()), false);
+                            player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.spawner_gained", fhPlayer.getHiddenHp()).formatted(net.minecraft.util.Formatting.AQUA), false);
                         } else {
-                            player.sendMessage(new LiteralText("§7スポナーを破壊しましたが、隠れHPは既に上限(4)です。"), false);
+                            player.sendMessage(new net.minecraft.text.TranslatableText("message.fragile-hearts.spawner_maxed").formatted(net.minecraft.util.Formatting.GRAY), false);
                         }
                     }
                 }
