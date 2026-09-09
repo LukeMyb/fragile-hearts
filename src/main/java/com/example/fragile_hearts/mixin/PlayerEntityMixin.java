@@ -14,6 +14,9 @@ public class PlayerEntityMixin implements FragileHeartsPlayer {
     // 隠れHPストックの変数（上限4）
     private int hiddenHp = 0;
 
+    // 初期化フラグ（初期値はfalse）
+    private boolean hpInitialized = false;
+
     @Override
     public int getHiddenHp() {
         return this.hiddenHp;
@@ -30,6 +33,13 @@ public class PlayerEntityMixin implements FragileHeartsPlayer {
         this.setHiddenHp(this.hiddenHp + amount);
     }
 
+    // フラグのゲッターとセッター
+    @Override
+    public boolean isHpInitialized() { return this.hpInitialized; }
+
+    @Override
+    public void setHpInitialized(boolean initialized) { this.hpInitialized = initialized; }
+
     @Override
     public void removeHiddenHp(int amount) {
         this.setHiddenHp(this.hiddenHp - amount);
@@ -39,6 +49,8 @@ public class PlayerEntityMixin implements FragileHeartsPlayer {
     @Inject(method = "writeCustomDataToTag", at = @At("RETURN"))
     public void writeCustomDataToTag(CompoundTag tag, CallbackInfo ci) {
         tag.putInt("FragileHearts_HiddenHp", this.hiddenHp);
+        // フラグを保存
+        tag.putBoolean("FragileHearts_HpInitialized", this.hpInitialized);
     }
 
     // ワールドに入った時のNBT読み込み
@@ -46,6 +58,10 @@ public class PlayerEntityMixin implements FragileHeartsPlayer {
     public void readCustomDataFromTag(CompoundTag tag, CallbackInfo ci) {
         if (tag.contains("FragileHearts_HiddenHp")) {
             this.hiddenHp = tag.getInt("FragileHearts_HiddenHp");
+        }
+        // フラグを読み込み
+        if (tag.contains("FragileHearts_HpInitialized")) {
+            this.hpInitialized = tag.getBoolean("FragileHearts_HpInitialized");
         }
     }
 }

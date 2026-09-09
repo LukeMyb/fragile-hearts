@@ -3,6 +3,7 @@ package com.example.fragile_hearts;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -19,6 +20,8 @@ public class FragileHearts implements ModInitializer {
     @Override
     public void onInitialize() {
         System.out.println("Fragile Hearts initialized!");
+
+
 
         // 朝の検知とHP減少イベント
         ServerTickEvents.END_WORLD_TICK.register(world -> {
