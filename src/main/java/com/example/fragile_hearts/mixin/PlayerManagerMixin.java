@@ -19,6 +19,11 @@ public class PlayerManagerMixin {
     private void onPlayerConnect(ClientConnection connection, ServerPlayerEntity player, CallbackInfo ci) {
         FragileHeartsPlayer fhPlayer = (FragileHeartsPlayer) player;
 
+        // ログイン時に現在のhiddenHpをクライアントへ同期
+        net.minecraft.network.PacketByteBuf buf = new net.minecraft.network.PacketByteBuf(io.netty.buffer.Unpooled.buffer());
+        buf.writeInt(fhPlayer.getHiddenHp());
+        net.fabricmc.fabric.api.network.ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, com.example.fragile_hearts.FragileHearts.SYNC_HIDDEN_HP_PACKET, buf);
+
         if (!fhPlayer.isHpInitialized()) {
             EntityAttributeInstance maxHealthAttr = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);
             if (maxHealthAttr != null) {

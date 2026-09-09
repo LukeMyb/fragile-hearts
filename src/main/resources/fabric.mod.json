@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"com.example.fragile_hearts.FragileHearts"
+		],
+		"client": [
+			"com.example.fragile_hearts.FragileHeartsClient"
 		]
 	},
 	"mixins": [

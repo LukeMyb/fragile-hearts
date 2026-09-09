@@ -13,6 +13,7 @@ import net.minecraft.world.World;
 
 public class FragileHearts implements ModInitializer {
     public static final String MOD_ID = "fragile-hearts";
+    public static final net.minecraft.util.Identifier SYNC_HIDDEN_HP_PACKET = new net.minecraft.util.Identifier(MOD_ID, "sync_hidden_hp");
 
     // 前回の時間を記録する変数（朝が来たかの判定用）
     private long lastTimeOfDay = -1;

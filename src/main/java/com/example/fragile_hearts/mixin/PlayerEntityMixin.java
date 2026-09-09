@@ -26,6 +26,13 @@ public class PlayerEntityMixin implements FragileHeartsPlayer {
     public void setHiddenHp(int hp) {
         // ストックは最小0、最大4に制限
         this.hiddenHp = Math.max(0, Math.min(4, hp));
+        
+        PlayerEntity player = (PlayerEntity) (Object) this;
+        if (!player.world.isClient && player instanceof net.minecraft.server.network.ServerPlayerEntity) {
+            net.minecraft.network.PacketByteBuf buf = new net.minecraft.network.PacketByteBuf(io.netty.buffer.Unpooled.buffer());
+            buf.writeInt(this.hiddenHp);
+            net.fabricmc.fabric.api.network.ServerSidePacketRegistry.INSTANCE.sendToPlayer(player, com.example.fragile_hearts.FragileHearts.SYNC_HIDDEN_HP_PACKET, buf);
+        }
     }
 
     @Override
