@@ -25,10 +25,9 @@ public class FragileHearts implements ModInitializer {
 
 
         // 朝の検知とHP減少イベント
-        ServerTickEvents.END_WORLD_TICK.register(world -> {
-            if (world.getRegistryKey() != World.OVERWORLD) return;
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            long timeOfDay = server.getOverworld().getTimeOfDay();
 
-            long timeOfDay = world.getTimeOfDay();
             long dayTime = timeOfDay % 24000;
 
             if (lastTimeOfDay != -1) {
@@ -40,7 +39,8 @@ public class FragileHearts implements ModInitializer {
                         (dayTime - lastDayTime > 1000 && dayTime < 2000);
 
                 if (isNewMorning) {
-                    for (ServerPlayerEntity player : world.getPlayers()) {
+                    // サーバー全体のプレイヤーを取得する処理
+                    for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
                         FragileHeartsPlayer fhPlayer = (FragileHeartsPlayer) player;
                         int hiddenHp = fhPlayer.getHiddenHp();
 
