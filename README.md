@@ -1,42 +1,43 @@
-# Example Mod
+# Fragile Hearts (脆い命)
 
-## Setup
+**安住を許さない、極限のノマド・サバイバル。**
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+## コンセプト：RTA勢・ハードコアプレイヤーへの挑戦状
 
-## License
+「拠点を作り、畑を耕し、安全な場所で引きこもる」――そんな温るいサバイバルに飽きたプレイヤー、そして最速を目指すRTA勢への挑戦状です。
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+『Fragile Hearts』は、常に死のタイムリミットに追われながら未開の地を駆け抜けることを強制する超ハードコア仕様のMOD。立ち止まることは死を意味します。生き残るための唯一の道は、絶えず動き、戦い、ダンジョンへと潜り、スポナーを破壊し続けることだけです。
 
+あなたは迫り来る死のカウントダウンから逃げ切り、エンダードラゴンの討伐を成し遂げることができるでしょうか？
 
-Minecraft 1.16.1 Fabric MOD開発環境 構築手順
+## ゲーム仕様
 
-【前提条件】
-・JDK 21がインストールされていること
-・IntelliJ IDEAがインストールされていること
+* **初期HPの制限**
+  * ワールド参加時、プレイヤーの最大HPは強制的に「**6（ハート3個分）**」に制限されます。
 
-【手順】
+* **朝のペナルティ (残酷なタイムリミット)**
+  * Minecraft内で1日（20分）が経過し「朝」を迎えるたびに、ネザーやエンドを含む全ディメンションの全プレイヤーの最大HPが「**1（ハート半分）**」減少します（下限は1）。
+  * ベッドで寝て夜をスキップしたとしても、無慈悲にペナルティは適用されます。
 
-テンプレートの取得
-GitHubの公式リポジトリから 1.16.1 ブランチのZIPを直接ダウンロードし、解凍します。
+* **回復手段（命の略奪）**
+  * 世界に点在する「**スポナー**」を破壊することでのみ、減少した最大HPを1回復することができます（上限は初期値の6）。
 
-gradle.properties の修正
-解凍したフォルダ内の gradle.properties を開き、以下の3行を1.16.1向けに書き換えます（他の行はそのまま残します）。
+* **隠れHPストック (猶予期間)**
+  * 最大HPが満タン（6）の状態でスポナーを破壊すると、「**隠れHPストック**」を1獲得できます（体力の右側にカスタムハートとして表示されます。最大4ストックまで）。
+  * 隠れHPストックがある場合、朝のペナルティ発生時に最大HPが減る代わりに、ストックが優先して1消費されます。
 
-yarn_mappings=1.16.1+build.21
-fabric_api_version=0.18.0+build.387-1.16.1
+## 動作環境・インストール
 
-IDEでのJava設定（重要）
-IntelliJ IDEAでプロジェクトを開き、以下の2箇所のJava設定を意図的に分けます。
+* **Minecraft**: 1.16.1
+* **Loader**: Fabric Loader 0.19.0 以上
+* **必須依存**: Fabric API
 
-・Gradle JVM（ビルドツール用）
-ファイル → 設定 → ビルド、実行、デプロイ → ビルドツール → Gradle
-Java 21を指定
+### インストール方法
+1. 指定されたバージョンのFabric Loaderを導入したプロファイルを作成します。
+2. Minecraftディレクトリの `mods` フォルダに、Fabric APIと本MODの `fragile-hearts-1.0.0.jar` を配置してください。
+3. ゲームを起動し、脆い命のサバイバルを始めてください。
 
-・プロジェクト SDK（マイクラ用）
-ファイル → プロジェクト構造 → プロジェクト
-Java 8 (1.8) を指定
+## ライセンス・作者
 
-同期と起動
-(1) Gradleの再同期（Reload All Gradle Projects）を実行します。
-(2) 同期完了後、Gradleタブから Tasks → fabric → runClient を実行して起動確認を行います。
+* **Author**: Luke ([@LukeMyb](https://github.com/LukeMyb))
+* **License**: CC0-1.0
